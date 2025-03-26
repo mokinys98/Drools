@@ -1,0 +1,10 @@
+package com.example.military.rules
+
+import com.example.military.TaktinioVertinimoModelis;
+
+rule "Patikrink aukštą grėsmę"
+when
+    $model: TaktinioVertinimoModelis( duomenys.radaroSignalai != null && duomenys.radaroSignalai.contains("aukštas") )
+then
+    System.out.println("Drools taisyklė: Aukšta grėsmė nustatyta. Rekomenduojama sustiprinti apsaugos linijas.");
+end

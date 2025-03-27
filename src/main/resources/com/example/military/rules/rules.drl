@@ -2,9 +2,82 @@ package com.example.military.rules
 
 import com.example.military.TaktinioVertinimoModelis;
 
+rule "Ar visos atasakaitos yra"
+when
+    $model: TaktinioVertinimoModelis( duomenys.radaroSignalai != null && duomenys.zvalgybosAtaskaita != null && duomenys.laukoStebejimas != null )
+then
+    System.out.println("Drools taisykle: Visos ataskaitos yra.");
+end
+
+rule "Nera bent vienos ataskaitos"
+when
+    $model: TaktinioVertinimoModelis( duomenys.radaroSignalai == null || duomenys.zvalgybosAtaskaita == null || duomenys.laukoStebejimas == null )
+then
+    System.out.println("Drools taisykle: Nera bent vienos ataskaitos.");
+end
+
+// aukstas, vidutinis, zemas
 rule "Patikrink aukštą grėsmę"
 when
-    $model: TaktinioVertinimoModelis( duomenys.radaroSignalai != null && duomenys.radaroSignalai.contains("aukštas") )
+    $model: TaktinioVertinimoModelis( duomenys.radaroSignalai != null && duomenys.radaroSignalai.contains("aukstas") )
 then
-    System.out.println("Drools taisyklė: Aukšta grėsmė nustatyta. Rekomenduojama sustiprinti apsaugos linijas.");
+    System.out.println("Drools taisykle: Auksta gresme nustatyta.");
+end
+
+rule "Patikrink vidutinę grėsmę"
+when
+    $model: TaktinioVertinimoModelis( duomenys.radaroSignalai != null && duomenys.radaroSignalai.contains("vidutinis") )
+then
+    System.out.println("Drools taisykle: Vidutine gresme nustatyta.");
+end
+
+rule "Patikrink žemą grėsmę"
+when
+    $model: TaktinioVertinimoModelis( duomenys.radaroSignalai != null && duomenys.radaroSignalai.contains("zemas") )
+then
+    System.out.println("Drools taisykle: Zema gresme nustatyta.");
+end
+
+// kritine, rimta, normali
+rule "Zvalgybos analize kritine"
+when
+    $model: TaktinioVertinimoModelis( duomenys.zvalgybosAtaskaita != null && duomenys.zvalgybosAtaskaita.contains("kritine") )
+then
+    System.out.println("Drools taisykle: zvalgybos ataskaita kritine.");
+end
+
+rule "Zvalgybos analize rimta"
+when
+    $model: TaktinioVertinimoModelis( duomenys.zvalgybosAtaskaita != null && duomenys.zvalgybosAtaskaita.contains("rimta") )
+then
+    System.out.println("Drools taisykle: zvalgybos ataskaita rimta.");
+end
+
+rule "Zvalgybos analize normali" 
+when
+    $model: TaktinioVertinimoModelis( duomenys.zvalgybosAtaskaita != null && duomenys.zvalgybosAtaskaita.contains("normali") )
+then
+    System.out.println("Drools taisykle: zvalgybos ataskaita normali.");
+end
+
+// pavojinga, nestabili, rami
+rule "Lauko stebejimas pavojinga"
+when
+    $model: TaktinioVertinimoModelis( duomenys.laukoStebejimas != null && duomenys.laukoStebejimas.contains("pavojinga") )
+then
+    System.out.println("Drools taisykle: lauko stebejimas pavojingas.");
+end
+
+rule "Lauko stebejimas nestabili"
+when
+    $model: TaktinioVertinimoModelis( duomenys.laukoStebejimas != null && duomenys.laukoStebejimas.contains("nestabili") )
+then
+    System.out.println("Drools taisykle: lauko stebejimas nestabilus.");
+end
+
+rule "Lauko stebejimas rami" 
+when
+    $model: TaktinioVertinimoModelis( duomenys.laukoStebejimas != null && duomenys.laukoStebejimas.contains("rami") )
+then
+    System.out.println("Drools taisykle: lauko stebejimas yra ramus.");
 end

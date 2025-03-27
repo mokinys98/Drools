@@ -3,17 +3,19 @@ package com.example.military;
 public class Main {
     public static void main(String[] args) {
         // Sukuriame pavyzdinius duomenis
-        SituacijosDuomenysLietuva duomenys = new SituacijosDuomenysLietuva(
+        SituacijosDuomenysLietuva ataskaita = new SituacijosDuomenysLietuva(
                 "2025-03-26 12:00",
-                "Lauko stebėjimo duomenys...",
-                "radaro signalai: aukštas intensyvumas",
-                "žvalgybos ataskaita..."
+                "Lauko stebėjimo duomenys: priešo pajėgos artėja prie sienos tai yra labai pavojinga", // pavojinga, nestabili, rami
+                "radaro signalai: aukstas intensyvumas", // aukstas, vidutinis, zemas
+                "zvalgybos ataskaita:  pratybos vyksta prie sienos, situacija rimta" // kritine, rimta, normali
         );
 
         // Analizės modelis
-        TaktinioVertinimoModelis modelis = new TaktinioVertinimoModelis(duomenys);
+        TaktinioVertinimoModelis modelis = new TaktinioVertinimoModelis(ataskaita);
         modelis.analizuotiSituacija();
-        System.out.println("Vertinimo rezultatas: " + modelis.getVertejimoRezultatas());
+        System.out.println("Radaru rezultatas: " + modelis.getRadarVertinimas());
+        System.out.println("Zvalgybos rezultatas: " + modelis.getZvalgybosRezultatas());
+        System.out.println("Stebejimo rezultatas: " + modelis.getStebejimoRezultatas());
 
         // Drools taisyklių vykdymas
         DroolsTaisykliuValdiklis droolsValdiklis = new DroolsTaisykliuValdiklis();
@@ -21,6 +23,6 @@ public class Main {
 
         // Generuojame rekomendaciją
         String rekomendacija = VeiksmuRekomendacijosModulis.generuotiRekomendacija(modelis.getVertejimoRezultatas());
-        System.out.println("Taktinė rekomendacija: " + rekomendacija);
+        System.out.println("Taktine - rekomendacija: " + rekomendacija);
     }
 }

@@ -1,11 +1,11 @@
-# Karini? Situacij? Sistema
+# Karinių Situacijų Sistema
 
-�is projektas yra skirtas modeliuoti ir analizuoti ?vairias karines situacijas naudojant Drools taisykli? varikl?. Sistema leid�ia kurti taisykles, jas vykdyti ir gauti sprendimus remiantis pateiktais duomenimis. Tai naudinga priemon? strateginiam planavimui ir situacij? vertinimui.
+Šis projektas yra skirtas modeliuoti ir analizuoti įvairias karines situacijas naudojant Drools taisyklių variklį. Sistema leidžia kurti taisykles, jas vykdyti ir gauti sprendimus remiantis pateiktais duomenimis. Tai naudinga priemonė strateginiam planavimui ir situacijų vertinimui.
 
 ## Funkcionalumas
-- Taisykli? k?rimas ir valdymas.
-- Duomen? analiz? pagal nustatytas taisykles.
-- Automatinis sprendim? generavimas.
+- Taisyklių kūrimas ir valdymas.
+- Duomenų analizė pagal nustatytas taisykles.
+- Automatinis sprendimų generavimas.
 
-## Tikslin? auditorija
-�i sistema yra skirta karini? analitik?, strateg? ir kit? specialist?, dirban?i? su sud?tingomis situacijomis, poreikiams tenkinti.
+## Tikslinė auditorija
+Ši sistema yra skirta karinių analitikų, strategų ir kitų specialistų, dirbančių su sudėtingomis situacijomis, poreikiams tenkinti.

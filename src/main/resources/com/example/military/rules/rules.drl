@@ -2,6 +2,13 @@ package com.example.military.rules
 
 import com.example.military.TaktinioVertinimoModelis;
 
+rule "Rule00: Tikriname ar modelis yra"
+when
+    $model: TaktinioVertinimoModelis()
+then
+    System.out.println("Drools taisykle: Modelis yra.");
+end
+
 rule "Rule01: Ar visos atasakaitos yra"
 when
     $model: TaktinioVertinimoModelis( duomenys.radaroSignalai != null && duomenys.zvalgybosAtaskaita != null && duomenys.laukoStebejimas != null )
@@ -80,4 +87,40 @@ when
     $model: TaktinioVertinimoModelis( duomenys.laukoStebejimas != null && duomenys.laukoStebejimas.contains("rami") )
 then
     System.out.println("Drools taisykle: lauko stebejimas yra ramus.");
+end
+
+// vertejimoRezultatas: labai aukstas, aukstas, vidutinis, zemas, labai zemas
+rule "Rule12: Vertejimo rezultatas labai aukštas"
+when
+    $model: TaktinioVertinimoModelis(vertejimoRezultatas.contains("Labai aukstas gresmes lygis."))
+then
+    System.out.println("Drools taisykle: Vertinimo rezultatas labai aukstas.");
+end
+
+rule "Rule13: Vertejimo rezultatas aukštas"
+when
+    $model: TaktinioVertinimoModelis(vertejimoRezultatas.contains("Aukstas gresmes lygis"))
+then
+    System.out.println("Drools taisykle: Vertinimo rezultatas aukstas.");
+end
+
+rule "Rule14: Vertejimo rezultatas vidutinis"
+when
+    $model: TaktinioVertinimoModelis(vertejimoRezultatas.contains("Vidutinis gresmes lygis"))
+then
+    System.out.println("Drools taisykle: Vertinimo rezultatas vidutinis.");
+end
+
+rule "Rule15: Vertejimo rezultatas žemas"
+when
+    $model: TaktinioVertinimoModelis(vertejimoRezultatas.contains("Zemas gresmes lygis"))
+then
+    System.out.println("Drools taisykle: Vertinimo rezultatas zemas.");
+end
+
+rule "Rule16: Vertejimo rezultatas labai žemas"
+when
+    $model: TaktinioVertinimoModelis(vertejimoRezultatas.contains("Labai zemas gresmes lygis"))
+then
+    System.out.println("Drools taisykle: Vertinimo rezultatas labai zemas.");
 end

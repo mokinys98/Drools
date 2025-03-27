@@ -12,10 +12,16 @@ public class Main {
 
         // Analizės modelis
         TaktinioVertinimoModelis modelis = new TaktinioVertinimoModelis(ataskaita);
-        modelis.analizuotiSituacija();
-        System.out.println("Radaru rezultatas: " + modelis.getRadarVertinimas());
-        System.out.println("Zvalgybos rezultatas: " + modelis.getZvalgybosRezultatas());
-        System.out.println("Stebejimo rezultatas: " + modelis.getStebejimoRezultatas());
+        if (DuomenuValidacijaModulis.validuoti(ataskaita)){
+            modelis.analizuotiSituacija();
+            System.out.println("Radaru rezultatas: " + modelis.getRadarVertinimas());
+            System.out.println("Zvalgybos rezultatas: " + modelis.getZvalgybosRezultatas());
+            System.out.println("Stebejimo rezultatas: " + modelis.getStebejimoRezultatas());
+            System.out.println("Vertejimo rezultatas: " + modelis.getVertejimoRezultatas());  
+        }else{
+            System.out.println("Duomenų validacija nepavyko. Patikrinkite įvestus duomenis.");
+        }
+        
 
         // Drools taisyklių vykdymas
         DroolsTaisykliuValdiklis droolsValdiklis = new DroolsTaisykliuValdiklis();

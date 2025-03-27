@@ -22,15 +22,31 @@ public class TaktinioVertinimoModelis {
         analizuotiZvalgybosAtaskaita();
         analizuotiLaukoStebejimoAtaskaita();
         
-        // Pavyzdinė logika: jeigu bent viena iš ataskaitų rodo kritinę situaciją, nustatome, kad situacija kritinė.
-        if (zvalgybosRezultatas.contains("kritine") || stebejimoRezultatas.contains("pavojinga")) {
-            vertejimoRezultatas = "Kritine situacija";
-        } else if (zvalgybosRezultatas.contains("rimta") || stebejimoRezultatas.contains("nestabili")) {
-            vertejimoRezultatas = "Rimta situacija";
-        } else if (zvalgybosRezultatas.contains("normali") || stebejimoRezultatas.contains("rami")) {
-            vertejimoRezultatas = "Normali situacija";
+        // Logika vertinimo prisilyginame ataskaitas ir nustatome bendra vertinimo rezultatą
+        int radaroVertinimasSkaicius = radaroVertinimas.contains("auksta") ? 3 :
+                           radaroVertinimas.contains("vidutini") ? 2 :
+                           radaroVertinimas.contains("zema") ? 1 : 0;
+
+        int zvalgybosVertinimasSkaicius = zvalgybosRezultatas.contains("kritine") ? 3 :
+                          zvalgybosRezultatas.contains("rimta") ? 2 :
+                          zvalgybosRezultatas.contains("normali") ? 1 : 0;
+
+        int stebejimoVertinimasSkaicius = stebejimoRezultatas.contains("pavojinga") ? 3 :
+                          stebejimoRezultatas.contains("nestabili") ? 2 :
+                          stebejimoRezultatas.contains("rami") ? 1 : 0;
+
+        int bendrasVertinimas = radaroVertinimasSkaicius + zvalgybosVertinimasSkaicius + stebejimoVertinimasSkaicius;
+
+        if (bendrasVertinimas >= 9) {
+            vertejimoRezultatas = "Labai aukstas gresmes lygis.";
+        } else if (bendrasVertinimas >= 7) {
+            vertejimoRezultatas = "Aukstas gresmes lygis.";
+        } else if (bendrasVertinimas >= 5) {
+            vertejimoRezultatas = "Vidutinis gresmes lygis.";
+        } else if (bendrasVertinimas >= 3) {
+            vertejimoRezultatas = "Zemas gresmes lygis.";
         } else {
-            vertejimoRezultatas = "Situacija nebuvo nustatyta";
+            vertejimoRezultatas = "Labai zemas gresmes lygis.";
         }
     }
 
@@ -87,12 +103,13 @@ public class TaktinioVertinimoModelis {
         }
     }
 
-    public String getVertejimoRezultatas() {
-        return vertejimoRezultatas;
-    }
 
     public SituacijosDuomenysLietuva getDuomenys() {
         return duomenys;
+    }
+
+    public String getVertejimoRezultatas() {
+        return vertejimoRezultatas;
     }
 
     public String getRadarVertinimas() {
